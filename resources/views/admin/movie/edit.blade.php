@@ -11,7 +11,7 @@
     <h1>映画情報登録</h1>
     
     <!-- 送信先を設定 -->
-    <form action="{{ route('movie.update', ['id'=>$movie->id]) }}" method="PATCH">
+    <form action="{{ route('admin.movie.update', ['id'=>$movie->id]) }}" method="PATCH">
         <!-- CSRFトークンを設定（セキュリティ対策） -->
         @csrf
         

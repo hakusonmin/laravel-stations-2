@@ -18,16 +18,16 @@ use App\Http\Controllers\AdminMovieController;
 */
 
 // Route::get('URL', [Controllerの名前::class, 'Controller内のfunction名']);
-Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('movie.index');
-Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('movie.create');
-Route::post('/admin/movies/store',[AdminMovieController::class, 'store'])->name('movie.store');
-Route::get('/admin/movies/{id}/edit', [AdminMovieController::class, 'edit'])->name('movie.edit');
+Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('admin.movie.index');
+Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('admin.movie.create');
+Route::post('/admin/movies/store',[AdminMovieController::class, 'store'])->name('admin.movie.store');
+Route::get('/admin/movies/{id}/edit', [AdminMovieController::class, 'edit'])->name('admin.movie.edit');
 
-Route::get('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('movie.update');
-Route::patch('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('movie.update');
+Route::get('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('admin.movie.update');
+Route::patch('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('admin.movie.update');
 
-Route::get('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('movie.destroy');
-Route::delete('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('movie.destroy');
+Route::get('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movie.destroy');
+Route::delete('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movie.destroy');
 
 Route::get('/movies', [MovieController::class, 'index']);
 Route::get('/practice', [PracticeController::class, 'sample']);

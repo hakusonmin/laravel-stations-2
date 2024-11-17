@@ -25,9 +25,9 @@
                     <td>{{ $movie->published_year }}</td>
                     <td>{{ $movie->description }}</td>
                     <td>{{ $movie->is_showing ? '上映中' : '上映予定' }}</td>
-                    <td><a href="{{ route('movie.edit', ['id'=> $movie->id]) }}" >編集</a></td>
+                    <td><a href="{{ route('admin.movie.edit', ['id'=> $movie->id]) }}" >編集</a></td>
                     <td>
-                      <form action="{{ route('movie.destroy', ['id'=>$movie->id]) }}" method="Delete">
+                      <form action="{{ route('admin.movie.destroy', ['id'=>$movie->id]) }}" method="Delete">
                         @csrf
                         <button type="submit">削除</button>
                       </form>

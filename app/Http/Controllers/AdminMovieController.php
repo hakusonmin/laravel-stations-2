@@ -10,13 +10,13 @@ class AdminMovieController extends Controller
   public function index()
   {
     $movies = Movie::all();
-    return view('movie.index', ['movies' => $movies]);
+    return view('admin.movie.index', ['movies' => $movies]);
   }    
 
   // 登録
   public function create()
   {
-    return view('movie.create');
+    return view('admin.movie.create');
   } 
 
   //登録処理
@@ -39,7 +39,7 @@ class AdminMovieController extends Controller
       $movies->is_showing = $validated['is_showing'];
       $movies->save();
 
-      return redirect()->route('movie.index');
+      return redirect()->route('admin.movie.index');
   }
 
   /**
@@ -49,7 +49,7 @@ class AdminMovieController extends Controller
     {
         $movie = Movie::find($id);
 
-        return view('movie.edit', compact('movie'));
+        return view('admin.movie.edit', compact('movie'));
     }
 
     /**
@@ -72,7 +72,7 @@ class AdminMovieController extends Controller
         $movies->is_showing = $validated['is_showing'] == 'true' ? 1 : 0;
         $movies->save();
         
-        return redirect()->route('movie.index');
+        return redirect()->route('admin.movie.index');
     }
 
         /**
@@ -85,6 +85,6 @@ class AdminMovieController extends Controller
         // レコードを削除
         $movie->delete();
         // 削除したら一覧画面にリダイレクト
-        return redirect()->route('movie.index');
+        return redirect()->route('admin.movie.index');
     }
 }
