@@ -19,9 +19,11 @@ use App\Http\Controllers\AdminMovieController;
 
 // Route::get('URL', [Controllerの名前::class, 'Controller内のfunction名']);
 Route::get('/admin/movies', [AdminMovieController::class, 'adminMovies']);
-
 Route::get('/admin/movies/create', [AdminMovieController::class, 'adminMoviesCreate']);
 Route::post('/admin/movies/store',[AdminMovieController::class, 'adminMoviesStore']);
+Route::get('/admin/movies/{id}/edit', [AdminMovieController::class, 'edit'])->name('movie.edit');
+Route::get('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('movie.update');
+Route::patch('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('movie.update');
 
 Route::get('/movies', [MovieController::class, 'index']);
 Route::get('/practice', [PracticeController::class, 'sample']);
