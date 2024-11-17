@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 
 class AdminMovieController extends Controller
 {
-  public function adminMovies()
+  public function index()
   {
     $movies = Movie::all();
-    return view('adminMovie', ['movies' => $movies]);
+    return view('movie.index', ['movies' => $movies]);
   }    
 
   // 登録
-  public function adminMoviesCreate()
+  public function create()
   {
-    return view('adminMovieCreate');
+    return view('movie.create');
   } 
 
   //登録処理
-  public function adminMoviesStore(Request $request)
+  public function store(Request $request)
   {
         $validated = $request->validate([
           'title' => ['required','unique:movies'],
@@ -39,7 +39,7 @@ class AdminMovieController extends Controller
       $movies->is_showing = $validated['is_showing'];
       $movies->save();
 
-      return redirect('/')->with('success', 'お問い合わせありがとうございます！');
+      return redirect()->route('movie.index');
   }
 
   /**
@@ -72,6 +72,6 @@ class AdminMovieController extends Controller
         $movies->is_showing = $validated['is_showing'] === 'true' ? 0 : 1;
         $movies->save();
         
-        return redirect('adminMovie')->with('success', 'お問い合わせありがとうございます！');
+        return redirect()->route('movie.index');
     }
 }
