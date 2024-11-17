@@ -69,7 +69,7 @@ class AdminMovieController extends Controller
         $movies->image_url = $validated['image_url'];
         $movies->published_year = $validated['published_year'];
         $movies->description = $validated['description'];
-        $movies->is_showing = $validated['is_showing'] === 'true' ? 0 : 1;
+        $movies->is_showing = $validated['is_showing'] == 'true' ? 1 : 0;
         $movies->save();
         
         return redirect()->route('movie.index');
