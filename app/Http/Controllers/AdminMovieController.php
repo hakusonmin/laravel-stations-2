@@ -74,4 +74,17 @@ class AdminMovieController extends Controller
         
         return redirect()->route('movie.index');
     }
+
+        /**
+     * 削除処理
+     */
+    public function destroy($id)
+    {
+        // Booksテーブルから指定のIDのレコード1件を取得
+        $movie = Movie::findorfail($id);
+        // レコードを削除
+        $movie->delete();
+        // 削除したら一覧画面にリダイレクト
+        return redirect()->route('movie.index');
+    }
 }
