@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\AdminMovieController;
 use App\Http\Controllers\MovieController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,7 @@ use App\Http\Controllers\MovieController;
 */
 
 // Route::get('URL', [Controllerの名前::class, 'Controller内のfunction名']);
+Route::get('/admin/movies', [AdminMovieController::class, 'adminMovies']);
 Route::get('/movies', [MovieController::class, 'index']);
 Route::get('/practice', [PracticeController::class, 'sample']);
 Route::get('/practice2', [PracticeController::class, 'sample2']);
