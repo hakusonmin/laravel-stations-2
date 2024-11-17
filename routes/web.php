@@ -29,7 +29,12 @@ Route::patch('/admin/movies/{id}/update', [AdminMovieController::class, 'update'
 Route::get('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movie.destroy');
 Route::delete('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movie.destroy');
 
-Route::get('/movies', [MovieController::class, 'index']);
+//movie
+Route::get('/movies', [MovieController::class, 'index'])->name('movie.index');;
+
+
+
+
 Route::get('/practice', [PracticeController::class, 'sample']);
 Route::get('/practice2', [PracticeController::class, 'sample2']);
 Route::get('/practice3', [PracticeController::class, 'sample3']);

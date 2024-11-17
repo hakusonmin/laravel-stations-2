@@ -10,7 +10,7 @@ class AdminMovieController extends Controller
   public function index()
   {
     $movies = Movie::all();
-    return view('admin.movie.index', ['movies' => $movies]);
+    return view('admin.movie.index', compact('movies'));
   }    
 
   // 登録

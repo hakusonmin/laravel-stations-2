@@ -11,7 +11,7 @@
     <h1>映画情報登録</h1>
     
     <!-- 送信先を設定 -->
-    <form method="POST" action="{{ url('/admin/movies/store') }}">
+    <form action="{{ route('admin.movie.store') }}" method="POST">
         <!-- CSRFトークンを設定（セキュリティ対策） -->
         @csrf
         
