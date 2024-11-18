@@ -17,6 +17,9 @@ use App\Http\Controllers\AdminMovieController;
 |
 */
 
+//movie
+Route::get('/movies', [MovieController::class, 'index'])->name('user.movie.index');;
+
 // Route::get('URL', [Controllerの名前::class, 'Controller内のfunction名']);
 Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('admin.movie.index');
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('admin.movie.create');
@@ -29,8 +32,7 @@ Route::patch('/admin/movies/{id}/update', [AdminMovieController::class, 'update'
 Route::get('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movie.destroy');
 Route::delete('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movie.destroy');
 
-//movie
-Route::get('/movies', [MovieController::class, 'index'])->name('movie.index');;
+
 
 
 
