@@ -40,5 +40,12 @@ class MovieController extends Controller
           'keyword' => $keyword,
       ]);
   }
+
+  public function show($id)
+  {
+        $movie = Movie::find($id);
+
+        return view('user.movie.show', compact('movie'));
+  }
 }
 

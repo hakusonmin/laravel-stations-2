@@ -77,7 +77,7 @@ class ScheduleTest extends TestCase
             'start_time' => Carbon::createFromTime(13, 00, 00),
             'end_time' => Carbon::createFromTime(14, 00, 00),
         ]);
-
+        
         $response = $this->get('/movies/' . $movieId);
         $response->assertSeeTextInOrder([
             $schedule2->start_time->format('H:i'),

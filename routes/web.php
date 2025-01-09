@@ -19,6 +19,7 @@ use App\Http\Controllers\AdminMovieController;
 
 //User系
 Route::get('/movies', [MovieController::class, 'index'])->name('user.movie.index');
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('user.movie.show');
 Route::get('/sheets', [SheetController::class, 'index'])->name('user.sheet.index');
 
 // Route::get('URL', [Controllerの名前::class, 'Controller内のfunction名']);
