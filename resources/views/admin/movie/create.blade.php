@@ -40,11 +40,17 @@
 
         <div>
             <label for="is_showing">上映中</label>
-            <input type="checkbox" id="is_showing" name="is_showing" required>
+            <input type="checkbox" id="is_showing" name="is_showing" value="1">
         </div>
         <div>
             <label for="is_showing_false">上映予定</label>
-            <input type="checkbox" id="is_showing" name="is_showing" required>
+            <input type="checkbox" id="is_showing" name="is_showing" value="0">
+        </div>
+
+          <!-- ジャンル入力フィールド -->
+          <div>
+            <label for="genre">ジャンル</label>
+            <input type="text" id="genre" name="genre" required>
         </div>
         
         <!-- 送信ボタン -->
@@ -52,4 +58,15 @@
             <button type="submit">送信</button>
         </div>
     </form>
+
+    @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    @endif
+
 </body>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('published_year');
             $table->tinyInteger('is_showing');
             $table->text('description');
+            $table->foreignId('genre_id')->constrained('genres');
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Genre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MovieFactory extends Factory
@@ -18,6 +19,7 @@ class MovieFactory extends Factory
             'image_url' => $this->faker->imageUrl(),
             'published_year' => $this->faker->year,
             'description' => $this->faker->realText(20),
+            'genre_id' => Genre::factory(),
             'is_showing' => $this->faker->boolean,
         ];
     }

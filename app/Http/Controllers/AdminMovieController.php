@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminMovieController extends Controller
 {
@@ -28,7 +30,13 @@ class AdminMovieController extends Controller
           'published_year' => 'required',
           'description' => 'required',
           'is_showing' => 'required',
+          'genre' => 'required',
       ]);
+    DB::transaction(function () use ($validated) {
+
+      $genreId = $validated['genre']
+            ? Genre::firstOrCreate(['name' => trim($validated['genre'])])->id
+            : null;
 
       // モデルを使用してデータをデータベースに保存
       $movies = new Movie();
@@ -37,7 +45,9 @@ class AdminMovieController extends Controller
       $movies->published_year = $validated['published_year'];
       $movies->description = $validated['description'];
       $movies->is_showing = $validated['is_showing'];
+      $movies->genre_id = $genreId;
       $movies->save();
+    });
 
       return redirect()->route('admin.movie.index');
   }
@@ -63,14 +73,24 @@ class AdminMovieController extends Controller
         'published_year' => 'required',
         'description' => 'required',
         'is_showing' => 'required',
+        'genre' => 'required',
     ]);
+
+    DB::transaction(function () use ($validated, $id) {
+      
+        $genreId = $validated['genre']
+            ? Genre::firstOrCreate(['name' => trim($validated['genre'])])->id
+            : null;
+
         $movies = Movie::find($id);
         $movies->title = $validated['title'];
         $movies->image_url = $validated['image_url'];
         $movies->published_year = $validated['published_year'];
         $movies->description = $validated['description'];
         $movies->is_showing = $validated['is_showing'] == 'true' ? 1 : 0;
+        $movies->genre_id = $genreId;
         $movies->save();
+    });
         
         return redirect()->route('admin.movie.index');
     }
@@ -85,6 +105,6 @@ class AdminMovieController extends Controller
         // レコードを削除
         $movie->delete();
         // 削除したら一覧画面にリダイレクト
-        return redirect()->route('admin.movie.index');
+        return redirect()->route('admin.movie.index')->with('message', '削除に成功しました');;
     }
 }

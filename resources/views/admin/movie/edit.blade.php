@@ -17,31 +17,38 @@
         
         <!-- 名前入力フィールド -->
         <div>
-            <label for="title">{{ $movie->title }}</label>
-            <input type="text" id="title" name="title" required>
+            <label for="title">映画タイトル</label>
+            <input type="text" id="title" name="title" value="{{old( 'title', $movie->title )}}" required>
         </div>
         
         <!-- メールアドレス入力フィールド -->
         <div>
-            <label for="image_url">{{ $movie->image_url}}</label>
-            <input type="url" id="image_url" name="image_url" required>
+            <label for="image_url">画像URL</label>
+            <input type="url" id="image_url" name="image_url" value="{{old( 'image_url', $movie->image_url )}}" required>
         </div>
 
         <div>
-            <label for="published_year">{{$movie->published_year}}</label>
-            <input type="number" id="published_year" name="published_year" required>
+            <label for="published_year">公開年</label>
+            <input type="number" id="published_year" name="published_year" value="{{old( 'published_year', $movie->published_year )}}" required>
         </div>
         
         <!-- メッセージ入力エリア -->
         <div>
-            <label for="description">{{$movie->description}}</label>
-            <textarea id="description" name="description" required></textarea>
+            <label for="description">概要</label>
+            <textarea id="description" name="description" required>{{old( 'description', $movie->description )}}</textarea>
         </div>
 
         <div>
-            <label for="is_showing">{{ $movie->is_showing ? '上映中' : '上映予定' }}</label>
-            <input type="text" id="is_showing" name="is_showing" required>
+            <label for="is_showing">上映状態</label>
+            <input type="text" id="is_showing" name="is_showing" value="{{old( 'is_showing', $movie->is_showing ? '上映中' : '上映予定' )}}" required>
         </div>
+
+        <!-- ジャンル入力フィールド -->
+        <div>
+            <label for="genre">ジャンル</label>
+            <input type="text" id="genre" name="genre" value="{{old( 'genre->name', $movie->genre->name )}}" required>
+        </div>
+        
 
         <!-- 送信ボタン -->
         <div>
