@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\SheetController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\AdminMovieController;
 
@@ -17,8 +17,9 @@ use App\Http\Controllers\AdminMovieController;
 |
 */
 
-//movie
-Route::get('/movies', [MovieController::class, 'index'])->name('user.movie.index');;
+//User系
+Route::get('/movies', [MovieController::class, 'index'])->name('user.movie.index');
+Route::get('/sheets', [SheetController::class, 'index'])->name('user.sheet.index');
 
 // Route::get('URL', [Controllerの名前::class, 'Controller内のfunction名']);
 Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('admin.movie.index');
