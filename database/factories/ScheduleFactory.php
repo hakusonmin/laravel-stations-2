@@ -14,9 +14,11 @@ class ScheduleFactory extends Factory
      * @return array
      */
     public function definition()
-    {
+    {   
+        static $count = 1;
+
         return [
-            //'movie_id' => Movie::factory(),
+            'id' => $count++,
             'movie_id' => Movie::factory(),
             'start_time' => CarbonImmutable::now(),
             'end_time' => CarbonImmutable::now()->addHours(2),

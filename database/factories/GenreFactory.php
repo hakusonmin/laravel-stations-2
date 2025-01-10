@@ -16,7 +16,10 @@ class GenreFactory extends Factory
      */
     public function definition()
     {
+        static $count = 1;
+
         return [
+          'id' => $count++,
           'name' => $this->faker->unique()->word,
         ];
     }

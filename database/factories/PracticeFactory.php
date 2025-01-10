@@ -12,8 +12,11 @@ class PracticeFactory extends Factory
      * @return array
      */
     public function definition()
-    {
+    {   
+        static $count = 1;
+
         return [
+            'id' => $count++,
             'title' => $this->faker->realText(10),
         ];
     }

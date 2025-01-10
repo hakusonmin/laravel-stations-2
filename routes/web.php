@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SheetController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\AdminMovieController;
-
+use App\Http\Controllers\AdminScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,18 +26,24 @@ Route::get('/sheets', [SheetController::class, 'index'])->name('user.sheet.index
 Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('admin.movie.index');
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('admin.movie.create');
 Route::post('/admin/movies/store',[AdminMovieController::class, 'store'])->name('admin.movie.store');
+Route::get('/admin/movies/{id}',[AdminMovieController::class, 'show'])->name('admin.movie.show');
 Route::get('/admin/movies/{id}/edit', [AdminMovieController::class, 'edit'])->name('admin.movie.edit');
 
 Route::get('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('admin.movie.update');
 Route::patch('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('admin.movie.update');
-
 Route::get('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movie.destroy');
 Route::delete('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movie.destroy');
 
-
-
-
-
+//schedule系
+Route::get('/admin/schedules',[AdminScheduleController::class, 'index'])->name('admin.schedule.index');
+Route::get('/admin/schedules/{id}',[AdminScheduleController::class, 'show'])->name('admin.schedule.show');
+Route::get('/admin/movies/{id}/schedules/create',[AdminScheduleController::class, 'create'])->name('admin.schedule.create');
+Route::post('/admin/movies/{id}/schedules/store',[AdminScheduleController::class, 'store'])->name('admin.schedule.store');
+Route::get('/admin/schedules/{scheduleId}/edit',[AdminScheduleController::class, 'edit'])->name('admin.schedule.edit');
+Route::get('/admin/schedules/{scheduleId}/update',[AdminScheduleController::class, 'update'])->name('admin.schedule.update');
+Route::patch('/admin/schedules/{scheduleId}/update',[AdminScheduleController::class, 'update'])->name('admin.schedule.update');
+Route::get('/admin/schedules/{scheduleId}/destroy',[AdminScheduleController::class, 'destroy'])->name('admin.schedule.destroy');
+Route::delete('/admin/schedules/{scheduleId}/destroy',[AdminScheduleController::class, 'destroy'])->name('admin.schedule.destroy');
 
 // Route::get('/practice', [PracticeController::class, 'sample']);
 // Route::get('/practice2', [PracticeController::class, 'sample2']);

@@ -52,6 +52,13 @@ class AdminMovieController extends Controller
       return redirect()->route('admin.movie.index');
   }
 
+  public function show($id)
+    {
+        $movie = Movie::find($id);
+
+        return view('admin.movie.show', compact('movie'));
+    }
+
   /**
      * 編集画面の表示
      */
