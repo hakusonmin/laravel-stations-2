@@ -12,9 +12,10 @@
         gap: 20px;
     }
     .movie {
-        border: 1px solid #ccc; 
+        border: 4px solid ; 
         padding: 10px; 
         width: 200px; 
+        border-radius: 30px;
     }
     .movie h2 {
         font-size: 18px;
@@ -22,7 +23,8 @@
         text-align: center; 
     }
     .movie ul {
-        list-style-type: disc;
+        list-style: none;
+        font-weight: bold;
         margin-left: 20px;
     }
     </style>

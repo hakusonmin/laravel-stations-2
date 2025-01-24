@@ -1,0 +1,55 @@
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 20px 0;
+font-size: 16px;
+font-family: 'Arial', sans-serif;
+text-align: left;
+}
+
+table thead tr {
+background-color: black;
+color: white;
+font-weight: bold;
+}
+
+table thead th {
+padding: 12px 15px;
+}
+
+table tbody tr {
+border-bottom: 3px solid #ddd;
+}
+
+/* 行ごとに色変える */
+table tbody tr:nth-of-type(even) {
+background-color: #f9f9f9;
+}
+
+/* セルのスタイル */
+table tbody td,
+table tbody th {
+padding: 12px 15px;
+font-weight: bold;
+color: #333;
+}
+
+/* 編集リンクのスタイル */
+a {
+color:black;
+text-decoration: none;
+font-weight: bold;
+}
+
+
+/* 削除ボタンのスタイル */
+button {
+background-color: black;
+color: white;
+border: none;
+padding: 8px 12px;
+border-radius: 4px;
+font-size: 14px;
+}
+
+
