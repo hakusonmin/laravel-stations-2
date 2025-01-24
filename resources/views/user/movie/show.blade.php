@@ -17,5 +17,6 @@
         <div>{{ $schedule->start_time}}</div>
         <div>{{ $schedule->end_time}}</div>
       @endforeach
+      <a href="{{ route('admin.movie.edit', ['id'=> $movie->id]) }}" >座席を予約する</a>
 </body>
 </html>

@@ -11,7 +11,7 @@ class AdminMovieController extends Controller
 {
   public function index()
   {
-    $movies = Movie::all();
+    $movies = Movie::with('genre')->get();
     return view('admin.movie.index', compact('movies'));
   }    
 

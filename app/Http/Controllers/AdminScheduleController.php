@@ -12,7 +12,7 @@ class AdminScheduleController extends Controller
 {
   public function index()
   {
-    $movies = Movie::all();
+    $movies = Movie::with('schedules')->get();
     return view('admin.schedule.index', compact('movies'));
   }    
 
