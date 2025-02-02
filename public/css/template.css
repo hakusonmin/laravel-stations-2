@@ -1,0 +1,55 @@
+/* headerしかいじらないのでscopeする必要はないと考える */
+
+@import url(https://fonts.googleapis.com/css?family=Sawarabi+Mincho);
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+li { 
+  list-style: none;
+}
+
+#header {
+  max-width:960px;
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 4%;
+  height: 170px;
+  border: solid;
+  border-radius: 30px;
+  /* ↓ここから文字スタイル指定 */
+  color: black;
+  font-family: "Sawarabi Mincho"; 
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.site-title a{
+  color: black;
+  text-decoration: none
+}
+
+#header ul {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+}
+
+#header ul li {
+  font-size: 0.9rem;
+  margin-left: 30px;
+}
+
+#header ul li a {
+  color: black;
+  transition: all 0.3s;
+  text-decoration: none
+}
+
