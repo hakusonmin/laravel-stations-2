@@ -1,0 +1,24 @@
+version: '3'
+
+tasks:
+  install:
+    cmds:
+      - composer install
+      - npm install
+      - cp .env.example .env
+      - php artisan key:generate
+      - php artisan storage:link
+      - chmod -R 777 storage bootstrap/cache
+      - composer dump-autoload #これないとartisanが打てない
+
+  seed: #task seed で実行 ↓これでシーディングした時にDuplicateエラーが出ない
+    cmds:
+      - docker compose exec php-container php artisan migrate:fresh --seed
+
+  fresh: #マイグレートコマンド
+    cmds:
+      - docker compose exec php-container php artisan migrate:fresh
+
+  dump: #ディレクトリを手動でいじった場合に必要
+    cmds:
+      - docker compose exec php-container composer dump-autoload
