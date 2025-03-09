@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MovieRequest;
 use App\Models\Movie;
 use App\Models\Genre;
 use Illuminate\Http\Request;
@@ -22,29 +23,21 @@ class AdminMovieController extends Controller
   }
 
   //登録処理
-  public function store(Request $request)
+  public function store(MovieRequest $request)
   {
-        $validated = $request->validate([
-          'title' => ['required','unique:movies'],
-          'image_url' => ['required', 'active_url'],
-          'published_year' => 'required',
-          'description' => 'required',
-          'is_showing' => 'required',
-          'genre' => 'required',
-      ]);
-    DB::transaction(function () use ($validated) {
 
-      $genreId = $validated['genre']
-            ? Genre::firstOrCreate(['name' => trim($validated['genre'])])->id
+    DB::transaction(function () use ($request) {
+      $genreId = $request->genre
+            ? Genre::firstOrCreate(['name' => trim($request->genre)])->id
             : null;
 
       // モデルを使用してデータをデータベースに保存
       $movies = new Movie();
-      $movies->title = $validated['title'];
-      $movies->image_url = $validated['image_url'];
-      $movies->published_year = $validated['published_year'];
-      $movies->description = $validated['description'];
-      $movies->is_showing = $validated['is_showing'];
+      $movies->title = $request->title;
+      $movies->image_url = $request->image_url;
+      $movies->published_year = $request->published_year;
+      $movies->description = $request->description;
+      $movies->is_showing = $request->is_showing;
       $movies->genre_id = $genreId;
       $movies->save();
     });
@@ -74,32 +67,25 @@ class AdminMovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $validated = $request->validate([
-        'title' => ['required','unique:movies'],
-        'image_url' => ['required', 'active_url'],
-        'published_year' => 'required',
-        'description' => 'required',
-        'is_showing' => 'required',
-        'genre' => 'required',
-    ]);
 
-    DB::transaction(function () use ($validated, $id) {
 
-        $genreId = $validated['genre']
-            ? Genre::firstOrCreate(['name' => trim($validated['genre'])])->id
-            : null;
+    // DB::transaction(function () use ($validated, $id) {
 
-        $movies = Movie::find($id);
-        $movies->title = $validated['title'];
-        $movies->image_url = $validated['image_url'];
-        $movies->published_year = $validated['published_year'];
-        $movies->description = $validated['description'];
-        $movies->is_showing = $validated['is_showing'] == 'true' ? 1 : 0;
-        $movies->genre_id = $genreId;
-        $movies->save();
-    });
+    //     $genreId = $validated['genre']
+    //         ? Genre::firstOrCreate(['name' => trim($validated['genre'])])->id
+    //         : null;
 
-        return redirect()->route('admin.movie.index');
+    //     $movies = Movie::find($id);
+    //     $movies->title = $validated['title'];
+    //     $movies->image_url = $validated['image_url'];
+    //     $movies->published_year = $validated['published_year'];
+    //     $movies->description = $validated['description'];
+    //     $movies->is_showing = $validated['is_showing'] == 'true' ? 1 : 0;
+    //     $movies->genre_id = $genreId;
+    //     $movies->save();
+    // });
+
+    //     return redirect()->route('admin.movie.index');
     }
 
         /**
