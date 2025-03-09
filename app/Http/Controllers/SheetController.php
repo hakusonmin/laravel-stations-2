@@ -11,5 +11,5 @@ class SheetController extends Controller
   {
     $sheets = Sheet::all();
     return view('user.sheet.index', compact('sheets'));
-  }    
+  }
 }

@@ -13,13 +13,13 @@ class AdminMovieController extends Controller
   {
     $movies = Movie::with('genre')->get();
     return view('admin.movie.index', compact('movies'));
-  }    
+  }
 
   // 登録
   public function create()
   {
     return view('admin.movie.create');
-  } 
+  }
 
   //登録処理
   public function store(Request $request)
@@ -84,7 +84,7 @@ class AdminMovieController extends Controller
     ]);
 
     DB::transaction(function () use ($validated, $id) {
-      
+
         $genreId = $validated['genre']
             ? Genre::firstOrCreate(['name' => trim($validated['genre'])])->id
             : null;
@@ -98,7 +98,7 @@ class AdminMovieController extends Controller
         $movies->genre_id = $genreId;
         $movies->save();
     });
-        
+
         return redirect()->route('admin.movie.index');
     }
 

@@ -12,7 +12,7 @@ class MovieController extends Controller
       // クエリパラメータの取得
       $isShowing = $request->query('is_showing', null); // 公開状態 (null = すべて)
       $keyword = $request->query('keyword', '');       // キーワード検索 (デフォルト: 空文字)
-      
+
       // クエリビルダーの初期化
       $query = Movie::query();
 
@@ -20,7 +20,7 @@ class MovieController extends Controller
       if (!is_null($isShowing)) {
           $query->where('is_showing', $isShowing);
       }
-      
+
       //ここで同じqueryを取り回すことでさらなる絞り込みを行うことができる
       // キーワード検索で絞り込み
       if (!empty($keyword)) {
