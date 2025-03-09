@@ -5,6 +5,7 @@ use App\Http\Controllers\SheetController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\AdminMovieController;
 use App\Http\Controllers\AdminScheduleController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ use App\Http\Controllers\AdminScheduleController;
 Route::get('/movies', [MovieController::class, 'index'])->name('user.movie.index');
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name('user.movie.show');
 Route::get('/sheets', [SheetController::class, 'index'])->name('user.sheet.index');
+Route::get('/movies/{movie_id}/schedules/{schedule_id}/sheets', [SheetController::class, 'index'])->name('user.sheet.index');
+Route::get('/movies/{movie_id}/schedules/{schedule_id}/reservations/create', [ReservationController::class, 'create'])->name('user.reservation.create');
+Route::post('/reservations/store', [ReservationController::class, 'store'])->name('user.reservation.store');
 
 // Route::get('URL', [Controllerの名前::class, 'Controller内のfunction名']);
 Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('admin.movie.index');

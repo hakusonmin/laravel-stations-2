@@ -17,6 +17,23 @@
         <div>{{ $schedule->start_time}}</div>
         <div>{{ $schedule->end_time}}</div>
       @endforeach
-      <a href="{{ route('admin.movie.edit', ['id'=> $movie->id]) }}" >座席を予約する</a>
+      <button class="back-button" type="button" onclick="location.href='{{ route('user.sheet.index',['movie_id' => $movie->id,'schedule_id' => $schedule->id, 'date' => $schedule->start_time->format('Y-m-d')]) }}'">予約する</button>
+
+    @if ($errors->any())
+
+    <div class="error">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
+  @if (session('message'))
+    <div class="message">
+      {{ session('message') }}
+    </div>
+  @endif
 </body>
 </html>
