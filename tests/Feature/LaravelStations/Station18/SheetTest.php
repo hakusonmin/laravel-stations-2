@@ -8,6 +8,7 @@ use App\Models\Reservation;
 use App\Models\Schedule;
 use App\Models\Sheet;
 use Carbon\CarbonImmutable;
+use Database\Seeders\SheetSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Group;
@@ -20,7 +21,7 @@ class SheetTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->seed();
+        $this->seed(SheetSeeder::class);
     }
 
     #[Test]
