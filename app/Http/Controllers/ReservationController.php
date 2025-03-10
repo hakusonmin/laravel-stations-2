@@ -27,6 +27,15 @@ class ReservationController extends Controller
             abort(400, 'Missing required parameters');
         }
 
+        $sheetId = $request->query('sheetId');
+        $exists = Reservation::where('schedule_id', $schedule_id)
+            ->where('sheet_id', $sheetId)
+            ->exists();
+
+        if ($exists) {
+            abort(400, 'This seat is already reserved');
+        }
+
         $sheet_id = $request->query('sheetId');
         $date = $request->query('date');
         return view(('user.reservation.create'), compact('movie_id', 'schedule_id', 'sheet_id', 'date'));
@@ -39,7 +48,8 @@ class ReservationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'schedule_id' => 'required|integer|exists:schedules,id',
-            'sheet_id' => 'required|integer|exists:sheets,id', 'unique:reservations,sheet_id',
+            'sheet_id' => 'required|integer|exists:sheets,id',
+            'unique:reservations,sheet_id',
             'name' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255'],
             'date' => 'required|date',
@@ -73,12 +83,13 @@ class ReservationController extends Controller
             $reservation->sheet_id = $request->sheet_id;
             $reservation->email = $request->email;
             $reservation->name = $request->name;
+            $reservation->is_canceled = true;
             $reservation->save();
 
             return redirect()->route('user.movie.show', ['id' => $request->movie_id])
-            ->with('success', '予約が完了しました');
+                ->with('success', '予約が完了しました');
         });
-}
+    }
 
     /**
      * Display the specified resource.

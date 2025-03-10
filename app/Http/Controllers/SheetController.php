@@ -19,8 +19,23 @@ class SheetController extends Controller
             abort(400, 'Missing required parameter: date');
         }
 
-        $sheets = Sheet::all();
+
         $date = $request->query('date');
+
+        $date = now()->format('Y-m-d');
+
+        // 指定された映画のスケジュールに基づいた予約情報を取得
+        $sheets = Sheet::with(['reservations' => function ($query) use ($date, $schedule_id) {
+            $query->where('date', '=', $date)
+                  ->where('schedule_id', '=', $schedule_id)
+                  ->where('is_canceled', false);
+        }])->get();
+
+        // 各シートに `is_reserved` をセット
+        foreach ($sheets as $sheet) {
+            $sheet->is_reserved = $sheet->reservations->isNotEmpty();
+        }
+
         return view('user.sheet.index', compact('sheets', 'movie_id', 'schedule_id','date'));
     }
 }

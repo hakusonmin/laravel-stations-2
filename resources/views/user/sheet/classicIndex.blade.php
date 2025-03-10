@@ -12,11 +12,17 @@
       width: 100%;
     }
 
-    th,
-    td {
+    th, td {
       border: 1px solid #000;
       text-align: center;
       padding: 8px;
+    }
+
+    /* 予約済みの席の背景をグレーにする */
+    .reserved {
+      background-color: gray;
+      color: white;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -26,33 +32,29 @@
     @foreach ($sheets->chunk(5) as $row)
       <tr>
         @foreach ($row as $sheet)
-          <td>
-
-              {{ $sheet->row . '-' . $sheet->column }}
-
+          <td class="{{ $sheet->is_reserved ? 'reserved' : '' }}">
+            {{ $sheet->row . '-' . $sheet->column }}
           </td>
         @endforeach
       </tr>
     @endforeach
   </table>
 
-
   @if ($errors->any())
+    <div class="error">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
 
-  <div class="error">
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
-
-@if (session('message'))
-  <div class="message">
-    {{ session('message') }}
-  </div>
-@endif
+  @if (session('message'))
+    <div class="message">
+      {{ session('message') }}
+    </div>
+  @endif
 </body>
 
 </html>
