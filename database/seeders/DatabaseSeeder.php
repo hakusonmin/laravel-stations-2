@@ -18,11 +18,9 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
         Schedule::factory(10)->create();
         Reservation::factory(10)->create();
-
-        $path = 'database/sql/sheet.sql';
-        DB::unprepared(file_get_contents($path));
+        $this->call(SheetSeeder::class);
     }
 }

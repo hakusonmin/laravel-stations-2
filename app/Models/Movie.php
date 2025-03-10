@@ -9,6 +9,10 @@ class Movie extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'is_showing' => 'boolean',
+    ];
+
     public function genre()
     {
       return $this->belongsTo(Genre::class);

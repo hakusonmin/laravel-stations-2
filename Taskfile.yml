@@ -22,3 +22,11 @@ tasks:
   dump: #ディレクトリを手動でいじった場合に必要
     cmds:
       - docker compose exec php-container composer dump-autoload
+
+  clear:
+    cmds:
+      - docker compose exec php-container php artisan cache:clear
+      - docker compose exec php-container php artisan config:clear
+      - docker compose exec php-container php artisan route:clear
+      - docker compose exec php-container php artisan view:clear
+

@@ -18,20 +18,22 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-//User系
-Route::get('/movies', [MovieController::class, 'index'])->name('user.movie.index');
-Route::get('/movies/{id}', [MovieController::class, 'show'])->name('user.movie.show');
-Route::get('/sheets', [SheetController::class, 'index'])->name('user.sheet.index');
-Route::get('/movies/{movie_id}/schedules/{schedule_id}/sheets', [SheetController::class, 'index'])->name('user.sheet.index');
-Route::get('/movies/{movie_id}/schedules/{schedule_id}/reservations/create', [ReservationController::class, 'create'])->name('user.reservation.create');
-Route::post('/reservations/store', [ReservationController::class, 'store'])->name('user.reservation.store');
-
 // Route::get('URL', [Controllerの名前::class, 'Controller内のfunction名']);
 Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('admin.movie.index');
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('admin.movie.create');
 Route::post('/admin/movies/store',[AdminMovieController::class, 'store'])->name('admin.movie.store');
 Route::get('/admin/movies/{id}',[AdminMovieController::class, 'show'])->name('admin.movie.show');
 Route::get('/admin/movies/{id}/edit', [AdminMovieController::class, 'edit'])->name('admin.movie.edit');
+
+//User系
+Route::get('/movies', [MovieController::class, 'index'])->name('user.movie.index');
+Route::get('/movies/{id?}', [MovieController::class, 'show'])->name('user.movie.show');
+Route::get('/sheets', [SheetController::class, 'classicIndex'])->name('user.sheet.classicIndex');
+Route::get('/movies/{movie_id?}/schedules/{schedule_id?}/sheets', [SheetController::class, 'index'])->name('user.sheet.index');
+Route::get('/movies/{movie_id}/schedules/{schedule_id}/reservations/create', [ReservationController::class, 'create'])->name('user.reservation.create');
+Route::post('/reservations/store', [ReservationController::class, 'store'])->name('user.reservation.store');
+
+
 
 Route::get('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('admin.movie.update');
 Route::patch('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('admin.movie.update');

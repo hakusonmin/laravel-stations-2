@@ -27,9 +27,9 @@
       <tr>
         @foreach ($row as $sheet)
           <td>
-            <a href="{{ route('user.reservation.create',['movie_id' => $movie_id, 'schedule_id' => $schedule_id, 'sheetId' => $sheet->id, 'date' => $date]) }}">
+
               {{ $sheet->row . '-' . $sheet->column }}
-            </a>
+
           </td>
         @endforeach
       </tr>

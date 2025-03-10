@@ -22,7 +22,11 @@ class ReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'schedule_id' => 'required|integer|exists:schedules.id',
+            'sheet_id' => 'required|integer|exists:sheets.id',
+            'name' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255'],
+            'date' => 'required|date',
         ];
     }
 }

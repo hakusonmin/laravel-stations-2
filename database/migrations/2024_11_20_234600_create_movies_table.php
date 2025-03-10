@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,14 +14,15 @@ return new class extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 255)->unique();
+            $table->text('title');
             $table->text('image_url');
             $table->integer('published_year');
             $table->tinyInteger('is_showing');
             $table->text('description');
-            $table->foreignId('genre_id')->constrained('genres');
+            $table->foreignId('genre_id');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE movies ADD UNIQUE INDEX title_unique (title(255))');
     }
 
     /**
